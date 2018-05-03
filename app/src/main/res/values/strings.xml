@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ParcialMoviles</string>
+    <string name="contactos">Contactos</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="user">Usuario</string>
+    <string name="buscar_main">Buscar</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>
