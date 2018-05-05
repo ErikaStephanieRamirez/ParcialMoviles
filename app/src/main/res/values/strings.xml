@@ -5,4 +5,10 @@
     <string name="user">Usuario</string>
     <string name="buscar_main">Buscar</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="nombre">Nombre</string>
+    <string name="celular">Celular</string>
+    <string name="direccion">Direccion</string>
+    <string name="cumple">Cumple</string>
+    <string name="correo">Correo</string>
+    <string name="userr">Correo</string>
 </resources>

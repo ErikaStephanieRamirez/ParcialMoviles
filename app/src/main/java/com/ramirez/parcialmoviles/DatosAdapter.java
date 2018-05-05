@@ -1,12 +1,14 @@
 package com.ramirez.parcialmoviles;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,17 +18,18 @@ import java.util.List;
  * Created by Erika on 02/05/2018.
  */
 
-public class InformacionAdapter extends RecyclerView.Adapter<InformacionAdapter.InformacionViewHolder>{
+public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.InformacionViewHolder>{
 
     private Context contexto;
     private LayoutInflater inflater;
-    private List<Informacion> informacion;
+    private List<Datos> datos;
+    private List<Datos> datos2;
 
 
 
-    public InformacionAdapter(Context contexto, List<Informacion> informacion) {
+    public DatosAdapter(Context contexto, List<Datos> informacion) {
         this.contexto = contexto;
-        this.informacion = informacion;
+        this.datos = informacion;
     }
 
     @Override
@@ -39,14 +42,29 @@ public class InformacionAdapter extends RecyclerView.Adapter<InformacionAdapter.
 
     @Override
     public void onBindViewHolder(final InformacionViewHolder holder, final int position) {
-        holder.name.setText(informacion.get(position).getNombre());
-        holder.img.setImageResource(informacion.get(position).getImg());
+
+        holder.name.setText(datos.get(position).getNombre());
+        holder.img.setImageResource(datos.get(position).getImg());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("tag",datos.get(position).getNombre());
+                Log.d("tag",datos.get(position).getNumero());
+
+               Intent info= new Intent(view.getContext(),Main2Activity.class);
+                Bundle box = new Bundle();
+                box.putSerializable("KEY",datos.get(position));
+                info.putExtras(box);
+                contexto.startActivity(info);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return informacion.size();
+        return datos.size();
     }
 
     public static class InformacionViewHolder extends RecyclerView.ViewHolder{
@@ -64,6 +82,6 @@ public class InformacionAdapter extends RecyclerView.Adapter<InformacionAdapter.
         }
     }
 
-    public InformacionAdapter(List<Informacion> informacion){ this.informacion = informacion;}
+    public DatosAdapter(List<Datos> informacion){ this.datos = informacion;}
 
 }

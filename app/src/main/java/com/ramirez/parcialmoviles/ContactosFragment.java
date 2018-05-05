@@ -33,12 +33,11 @@ public class ContactosFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
 
-
     private String mParam1;
     private String mParam2;
     private ListView saveListView;
 
-    private List<Informacion> LiftSaves = new ArrayList<Informacion>();
+    private List<Datos> LiftSaves = new ArrayList<Datos>();
 
     public ContactosFragment() {
 
@@ -61,6 +60,8 @@ public class ContactosFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -73,7 +74,7 @@ public class ContactosFragment extends Fragment {
         GridLayoutManager gManager = new GridLayoutManager(getContext(),3);
         RecyclerView.LayoutManager lManager = gManager;
         rv.setLayoutManager(lManager);
-        InformacionAdapter adapter = new InformacionAdapter(getContext(),ObtenerDatos());
+        DatosAdapter adapter = new DatosAdapter(getContext(),ObtenerDatos());
         rv.setAdapter(adapter);
 
 
@@ -83,24 +84,28 @@ public class ContactosFragment extends Fragment {
 
     private View vista;
     RecyclerView rv;
-    InformacionAdapter adapter;
+    DatosAdapter adapter;
     TextView textView;
-    ArrayList<Informacion> informacion;
-    //LinearLayoutManager lManager;
+    ArrayList<Datos> informacion;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private List<Informacion> ObtenerDatos(){
-        List<Informacion> list = new ArrayList<>();
-        Cursor cursor= getContext().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,null
-                ,null, ContactsContract.Contacts.DISPLAY_NAME+" ASC");
+    private List<Datos> ObtenerDatos(){
+        List<Datos> list = new ArrayList<>();
+
+        String selectionClause = ContactsContract.Data.MIMETYPE + "='" +
+                ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE + "' AND "
+                + ContactsContract.CommonDataKinds.Phone.NUMBER + " IS NOT NULL";
+        String sortOrder = ContactsContract.Data.DISPLAY_NAME + " ASC";
+
+        Cursor cursor= getContext().getContentResolver().query(
+                ContactsContract.Data.CONTENT_URI, null, selectionClause, null, sortOrder);
         cursor.moveToFirst();
         while(cursor.moveToNext()){
-            list.add(new Informacion(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))));
+            list.add(new Datos(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)), cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))));
         }
 
         return list;
-
     }
 
 

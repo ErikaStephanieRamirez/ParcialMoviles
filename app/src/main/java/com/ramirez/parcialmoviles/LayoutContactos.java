@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Erika on 02/05/2018.
  */
 
-public class Contactos_layout extends AppCompatActivity {
+public class LayoutContactos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,22 +6,45 @@ import java.io.Serializable;
  * Created by Karla on 29/04/2018.
  */
 
-public class Informacion implements Serializable {
-    private String ID, nombre, numero, direccion;
+public class Datos implements Serializable {
+    private String ID, nombre, numero, direccion, correo, cumple;
     private int img;
 
-    public Informacion() {
+    public Datos() {
     }
 
-    public Informacion(String ID, String nombre, String numero, String direccion, int img) {
+    public Datos(String ID, String nombre, String numero, String direccion, String correo, String cumple, int img) {
         this.ID = ID;
         this.nombre = nombre;
         this.numero = numero;
         this.direccion = direccion;
+        this.correo = correo;
+        this.cumple = cumple;
         this.img = img;
     }
 
-    public Informacion(String nombre) {
+    public Datos(String nombre, String numero) {
+        this.nombre = nombre;
+        this.numero = numero;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getCumple() {
+        return cumple;
+    }
+
+    public void setCumple(String cumple) {
+        this.cumple = cumple;
+    }
+
+    public Datos(String nombre) {
         this.nombre = nombre;
     }
 
