@@ -1,5 +1,7 @@
 package com.ramirez.parcialmoviles;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 
 /**
@@ -8,12 +10,12 @@ import java.io.Serializable;
 
 public class Datos implements Serializable {
     private String ID, nombre, numero, direccion, correo, cumple;
-    private int img;
+    private Uri img;
 
     public Datos() {
     }
 
-    public Datos(String ID, String nombre, String numero, String direccion, String correo, String cumple, int img) {
+    public Datos(String ID, String nombre, String numero, String direccion, String correo, String cumple, Uri img) {
         this.ID = ID;
         this.nombre = nombre;
         this.numero = numero;
@@ -22,6 +24,7 @@ public class Datos implements Serializable {
         this.cumple = cumple;
         this.img = img;
     }
+
 
     public Datos(String nombre, String numero) {
         this.nombre = nombre;
@@ -80,11 +83,11 @@ public class Datos implements Serializable {
         this.direccion = direccion;
     }
 
-    public int getImg() {
+    public Uri getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(Uri img) {
         this.img = img;
     }
 }

@@ -2,6 +2,7 @@ package com.ramirez.parcialmoviles;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +45,17 @@ public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.InformacionV
     public void onBindViewHolder(final InformacionViewHolder holder, final int position) {
 
         holder.name.setText(datos.get(position).getNombre());
-        holder.img.setImageResource(datos.get(position).getImg());
+
+        ImageView img;
+
+        img=holder.img;
+
+        if(datos.get(position).getImg() == null){
+            img.setImageResource(R.drawable.usuario);
+        }
+        else {
+            img.setImageURI(datos.get(position).getImg());
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
